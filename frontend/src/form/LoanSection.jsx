@@ -35,7 +35,6 @@ export default function LoanSection({ form, onChange }) {
         </div>
       </div>
 
-      //loan purpose
       <div className="mb-3 mt-3">
         <label htmlFor="loanPurpose" className="form-label">
           Loan purpose
