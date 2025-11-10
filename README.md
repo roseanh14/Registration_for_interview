@@ -1,8 +1,57 @@
- This app is a tiny demo of a registration flow: a React (Vite) frontend talks to a Flask + SQLAlchemy API that stores data in SQLite. 
- Run backend: cd backend && pip install -r requirements.txt && python main.py (API on http://127.0.0.1:5000, CORS allows http://localhost:5173). 
- Run frontend: cd frontend && npm install && npm run dev (opens on http://localhost:5173). 
- The form components (e.g., Personal/Loan sections) lift state to the parent and send JSON to the API, showing how the piece fits the overall architecture. 
- Tests: backend with pytest, frontend with npm test
+# Registration Flow Demo
 
- The showcased component (form sections like LoanSection) lifts state to the parent, sends JSON to the API, 
- and its data appears in the submissions table/detail—demonstrating how the piece fits the whole system.
+A tiny full‑stack demo of a registration flow: a **React (Vite)** frontend talks to a **Flask + SQLAlchemy** API persisting data in **SQLite**. It highlights *state lifting* in form sections and end‑to‑end JSON submission to the backend, with results visible in a submissions table/detail view.
+
+---
+
+## Tech Stack
+- **Frontend:** React, Vite, 
+- **Backend:** Python, Flask, SQLAlchemy
+- **Database:** SQLite
+- **Testing:** Pytest (backend), `npm test` (frontend)
+- **Dev URLs:**
+  - API: `http://127.0.0.1:5000`
+  - App: `http://localhost:5173`
+- **CORS:** Backend allows requests from `http://localhost:5173`
+
+---
+
+## Quickstart
+
+### 1) Run the backend
+```bash
+cd backend
+pip install -r requirements.txt
+python main.py
+# API served at http://127.0.0.1:5000 (CORS: http://localhost:5173)
+```
+
+### 2) Run the frontend
+```bash
+cd frontend
+npm install
+npm run dev
+# App served at http://localhost:5173
+```
+
+## How the Form Works 
+
+Form sections like **`PersonalSection`** and **`LoanSection`** are *controlled components*:
+- Each section accepts `value` and `onChange` props from the parent (e.g., `RegistrationForm`).
+- Local inputs call `onChange(partialUpdate)`; the parent merges to a single `formData` object.
+- On submit, the parent sends the aggregated `formData` as **JSON** to the Flask API.
+- After a successful POST, the new record appears in the **submissions table/detail** view.
+
+## Testing
+
+### Backend
+```bash
+cd backend
+pytest -q
+```
+
+### Frontend
+```bash
+cd frontend
+npm test
+```
